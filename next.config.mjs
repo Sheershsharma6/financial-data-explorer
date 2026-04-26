@@ -2,6 +2,12 @@
 const nextConfig = {
   /* config options here */
   reactCompiler: true,
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '2mb', // Increase limit to handle larger financial datasets
+    },
+  },
+  
 };
 
 export default nextConfig;
