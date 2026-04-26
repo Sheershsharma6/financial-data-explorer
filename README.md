@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Financial Data Explorer (SEC + Gemini AI)
+A modern, high-performance financial dashboard built with Next.js 14, Redux Toolkit, and Google Gemini 3.1. This platform allows users to explore audited SEC financial data, visualize growth trends through interactive charts, and receive instant AI-driven executive summaries.
 
-## Getting Started
+🚀 Quick Start
+Clone & Install
 
-First, run the development server:
+Bash
+git clone https://github.com/your-username/financial-explorer.git
+cd financial-explorer
+npm install
+Environment Setup
+Create a .env.local file in the root directory:
 
-```bash
+Code snippet
+NEXT_PUBLIC_SEC_USER_AGENT=Your Name (your-email@domain.com)
+NEXT_PUBLIC_GEMINI_API_KEY=your_google_ai_studio_key
+SEC_API_MAPPING_KEY=your_sec_api_io_key
+Run Development Server
+
+Bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🛠️ Tech Choices & Architecture
+Framework: Next.js 14 (App Router) for Server-Side Rendering (SSR) and secure API routes.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+State Management: Redux Toolkit (RTK) for maintaining a single source of truth for financial facts across the dashboard.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+AI Integration: Google Gemini 3.1 Flash via Server Actions, providing real-time financial sentiment and trend analysis.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Data Source: Direct integration with the SEC EDGAR API and sec-api.io for CIK/Ticker mapping.
 
-## Learn More
+Visualization: Recharts for responsive, high-fidelity financial trend lines.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The "Fuzzy-Tag" Strategy
+A core technical highlight of this project is the robust data processor. Since companies often use different GAAP taxonomies (e.g., Revenues vs SalesRevenueNet), I implemented a mapping utility that scans for multiple common tags to ensure charts never appear empty for Mega-Cap companies like Apple or Amazon.
