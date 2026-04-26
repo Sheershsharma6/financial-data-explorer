@@ -13,7 +13,10 @@ export default function Home() {
 
   const [cik, setCik] = useState('');
   const dispatch = useDispatch();
-  const { revenue, assets } = companyFacts ? processFinancialData(companyFacts.facts) : { revenue: [], assets: [] };
+  
+  // CRITICAL: Access the ['us-gaap'] property which contains the actual financial data
+  const factsSource = companyFacts?.facts?.['us-gaap'] || companyFacts?.facts || {};
+  const { revenue, assets } = companyFacts ? processFinancialData(factsSource) : { revenue: [], assets: [] };
 
   const handleSearch = () => {
     if (!cik) return;
@@ -34,7 +37,7 @@ export default function Home() {
             value={cik} 
             onChange={(e) => setCik(e.target.value)} 
             placeholder="Enter CIK (e.g. 320193)"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black" 
           />
           <button onClick={handleSearch} className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">Explore</button>
         </div>
@@ -62,27 +65,24 @@ export default function Home() {
             companyFacts={companyFacts.facts} 
             entityName={companyFacts.entityName} 
           />
-            <section className="bg-white p-6 rounded-xl shadow-md">
-              <h2 className="text-2xl font-bold mb-4">{companyFacts.entityName}</h2>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-  <FinancialChart data={assets} title="Total Assets Growth" />
-  <DataTable data={assets} />
-</div>
-<div className="flex justify-between items-center mb-4">
-  <h3 className="text-xl font-semibold">Key Financial Metrics</h3>
-  <button 
-    onClick={() => exportToCSV(assets, `${companyFacts.entityName}_Financials.csv`)}
-    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm"
-  >
-    Export CSV
-  </button>
-</div>
+            <section className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+              <div className="flex flex-col">
+                <div className="flex justify-between items-center mb-6 pb-4 border-b border-gray-200">
+                  <h2 className="text-3xl font-bold text-gray-900">{companyFacts.entityName}</h2>
+                  <button 
+                    onClick={() => exportToCSV(assets, `${companyFacts.entityName}_Financials.csv`)}
+                    className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium shadow-md hover:shadow-lg"
+                  >
+                    📥 Export CSV
+                  </button>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-700 mb-6">Financial Metrics Overview</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <FinancialChart data={assets} title="Total Assets Growth" />
+                  <DataTable data={assets} />
+                </div>
+              </div>
             </section>
-            
-            {/* We will build the Chart and Table components in the next step */}
-            <div id="data-visuals" className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-               {/* Placeholders for Charts */}
-            </div>
           </div>
         )}  
       </div>
