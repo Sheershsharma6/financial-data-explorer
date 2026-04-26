@@ -5,16 +5,16 @@ A modern, high-performance financial dashboard built with Next.js 14, Redux Tool
 Clone & Install
 
 Bash
-git clone https://github.com/your-username/financial-explorer.git
+git clone https://github.com/sheershsharma6/financial-explorer.git
 cd financial-explorer
 npm install
 Environment Setup
 Create a .env.local file in the root directory:
 
 Code snippet
-NEXT_PUBLIC_SEC_USER_AGENT=Your Name (your-email@domain.com)
-NEXT_PUBLIC_GEMINI_API_KEY=your_google_ai_studio_key
-SEC_API_MAPPING_KEY=your_sec_api_io_key
+NEXT_PUBLIC_SEC_USER_AGENT=Sheersh Sharma (sheershsharma6.com)
+NEXT_PUBLIC_GEMINI_API_KEY=my_google_ai_studio_key
+SEC_API_MAPPING_KEY=my_sec_api_io_key
 Run Development Server
 
 Bash
