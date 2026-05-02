@@ -1,6 +1,8 @@
 Financial Data Explorer (SEC + Gemini AI)
 A modern, high-performance financial dashboard built with Next.js 14, Redux Toolkit, and Google Gemini 3.1. This platform allows users to explore audited SEC financial data, visualize growth trends through interactive charts, and receive instant AI-driven executive summaries.
 
+Live : https://financial-data-explorer-kappa.vercel.app/
+
 🚀 Quick Start
 Clone & Install
 
